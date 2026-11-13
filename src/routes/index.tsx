@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, BookOpen, Check, ChevronDown, CircleCheck, Clock3, Cog, Gauge, GraduationCap, Laptop, LockKeyhole, Monitor, Play, Settings, ShieldCheck, Smartphone, Tablet, Wrench, Zap, CarFront, Disc3, BatteryCharging, Fuel, ScanLine, Fan, ClipboardCheck, FileText, AlertTriangle } from "lucide-react";
+import { ArrowRight, Check, ChevronDown, CircleCheck, Cog, Gauge, GraduationCap, Laptop, Monitor, Play, Settings, ShieldCheck, Smartphone, Tablet, Wrench, Zap, CarFront, Disc3, Fuel, ScanLine, ClipboardCheck, FileText } from "lucide-react";
 import { offer } from "../lib/offer-pt";
 
 export const Route = createFileRoute("/")({
