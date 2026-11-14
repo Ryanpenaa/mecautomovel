@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ArrowRight, Check, ChevronDown, CircleCheck, Cog, Gauge, GraduationCap, Laptop, Monitor, Play, Settings, ShieldCheck, Smartphone, Tablet, Wrench, Zap, CarFront, Disc3, Fuel, ScanLine, ClipboardCheck, CircuitBoard, BatteryCharging, CircleGauge, Workflow, Waypoints } from "lucide-react";
+import { Star, ArrowRight, Check, ChevronDown, CircleCheck, Cog, Gauge, GraduationCap, Laptop, Monitor, Play, Settings, ShieldCheck, Smartphone, Tablet, Wrench, Zap, CarFront, Disc3, Fuel, ScanLine, ClipboardCheck, CircuitBoard, BatteryCharging, CircleGauge, Workflow, Waypoints } from "lucide-react";
 import { offer } from "../lib/offer-pt";
 
 export const Route = createFileRoute("/")({
@@ -91,6 +91,51 @@ function VehicleArt() {
     />
   </div>;
 }
+const studentReviews = [
+  { name: "Guilherme da Paz", image: "https://mecanicoautomotiva.lovable.app/__l5e/assets-v1/5ad4430d-077f-40ed-a8ac-f44fa11d4f01/guilherme.webp", review: "Curso 5 estrelas, muito bom. Voltei só para comentar porque, quando comprei, estava com muito medo de ser golpe." },
+  { name: "Jennifer S. Luz", image: "https://mecanicoautomotiva.lovable.app/__l5e/assets-v1/27556a6b-1d2f-4c61-9e0b-85fe70542fbb/jennifer.webp", review: "Recomendo muito mesmo. Realizei o curso e peguei meu certificado." },
+  { name: "Carlos Gomes", image: "https://mecanicoautomotiva.lovable.app/__l5e/assets-v1/0336291c-4504-4a17-aa34-9d751c1321ab/carlos.webp", review: "Revisei principalmente pelo material ilustrado e pelas apostilas. Muito bom o curso todo." },
+];
+function StudentReviews() {
+  const [name, setName] = useState("");
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+  const [saved, setSaved] = useState(false);
+  function saveDraft(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!name.trim() || !rating || !comment.trim()) return;
+    try {
+      localStorage.setItem("mecautomovel-review-draft", JSON.stringify({ name: name.trim(), rating, comment: comment.trim() }));
+      setSaved(true);
+    } catch { setSaved(false); }
+  }
+  return <section aria-labelledby="reviews-title" className="bg-white px-5 py-20">
+    <div className="mx-auto max-w-6xl">
+      <div className="mb-10 text-center">
+        <span className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-[10px] font-black tracking-[0.16em] text-blue-700">PROVA SOCIAL</span>
+        <h2 id="reviews-title" className="mt-5 text-2xl font-black uppercase text-slate-950 sm:text-3xl">O Que Nossos Alunos Estão Dizendo</h2>
+        <p className="mt-3 text-sm text-slate-500">Avaliações de alunos da formação.</p>
+      </div>
+      <div className="grid gap-4 md:grid-cols-3">
+        {studentReviews.map((student) => <article key={student.name} className="rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm">
+          <div className="flex items-center gap-3"><img src={student.image} width={44} height={44} alt={`Foto de ${student.name}`} loading="lazy" decoding="async" className="h-11 w-11 rounded-full bg-slate-200 object-cover"/><div><h3 className="text-sm font-extrabold">{student.name}</h3><p className="text-xs text-slate-500">Avaliação de aluno</p></div></div>
+          <div className="mt-3 flex gap-0.5 text-amber-500" aria-label="5 de 5 estrelas" role="img">{[1,2,3,4,5].map(n=><Star key={n} size={17} fill="currentColor" strokeWidth={1.5}/>)}</div>
+          <p className="mt-3 text-sm leading-relaxed text-slate-700">{student.review}</p>
+        </article>)}
+      </div>
+      <form onSubmit={saveDraft} className="mx-auto mt-8 max-w-xl space-y-5 rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm sm:p-8">
+        <h3 className="text-lg font-black">Deixe a sua avaliação</h3>
+        <p className="text-sm text-slate-500">Partilhe a sua opinião sobre o curso.</p>
+        <div><label htmlFor="student-review-name" className="mb-2 block text-sm font-bold">O seu nome</label><input id="student-review-name" required maxLength={100} placeholder="Como gostaria de aparecer" value={name} onChange={e=>{setName(e.target.value);setSaved(false)}} className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm focus:outline-blue-500"/></div>
+        <fieldset><legend className="mb-2 text-sm font-bold">Quantas estrelas dá ao curso?</legend><div className="flex items-center gap-1">{[1,2,3,4,5].map(n=><button type="button" key={n} aria-label={`${n} estrelas`} aria-pressed={rating===n} onClick={()=>{setRating(n);setSaved(false)}} className="rounded p-1 focus-visible:outline-blue-500"><Star size={29} className={n<=rating?"text-amber-500":"text-slate-400"} fill={n<=rating?"currentColor":"none"}/></button>)}<span className="ml-2 text-xs text-slate-500">{rating ? `${rating}/5` : "Selecione"}</span></div></fieldset>
+        <div><label htmlFor="student-review-comment" className="mb-2 block text-sm font-bold">O seu comentário</label><textarea id="student-review-comment" required maxLength={1500} rows={4} placeholder="Conte a sua experiência com a formação" value={comment} onChange={e=>{setComment(e.target.value);setSaved(false)}} className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm focus:outline-blue-500"/></div>
+        <button type="submit" disabled={!rating || !name.trim() || !comment.trim()} className="w-full rounded-xl bg-blue-600 px-5 py-3.5 text-sm font-black text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50">Guardar avaliação</button>
+        {saved && <p role="status" className="text-sm text-emerald-700">Avaliação guardada neste navegador. Ainda não foi enviada para moderação.</p>}
+        <p className="text-xs leading-relaxed text-slate-500">O envio de avaliações ainda não está ligado a um serviço de moderação. O rascunho fica apenas neste navegador.</p>
+      </form>
+    </div>
+  </section>;
+}
 function Home() {
   const [opened, setOpened] = useState<number | null>(0);
   return <main className="min-h-screen bg-[#f8fafc] text-slate-900">
@@ -140,7 +185,7 @@ function Home() {
       <div className="relative rounded-3xl border-2 border-amber-400 bg-white p-7 text-slate-950 shadow-[0_0_55px_rgba(251,191,36,.17)] sm:p-9"><div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-5 py-2 text-xs font-black">MAIS COMPLETO</div><h3 className="text-xl font-black">PLANO PROFISSIONAL</h3><p className="mt-5 text-5xl font-black">{offer.professional.price.toLocaleString("pt-PT",{style:"currency",currency:"EUR"})}</p><p className="mt-2 text-sm text-slate-500">Preço de teste</p><ul className="my-8 space-y-4">{["Mais de 80 videoaulas","Certificado digital de conclusão*","Acesso vitalício","Materiais de apoio sujeitos a validação","10 bónus exclusivos, após validação"].map(t=><li key={t} className="flex gap-3"><CircleCheck className="shrink-0 text-amber-600"/>{t}</li>)}</ul><button disabled className="w-full cursor-not-allowed rounded-xl bg-slate-900 px-4 py-4 font-extrabold text-white opacity-70">QUERO O PLANO PROFISSIONAL</button></div>
     </div></div></section>
 
-    <section className="mx-auto max-w-6xl px-5 py-20"><Heading title="O Que Dizem os Nossos Alunos"/><div className="rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-10 text-center"><p className="font-semibold">Avaliações da formação automóvel ainda por verificar.</p><p className="mt-2 text-sm text-slate-500">Este espaço será apresentado com testemunhos reais e autorizados, quando disponíveis.</p></div></section>
+    <StudentReviews/>
 
     <section className="bg-amber-400 px-5 py-20"><div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2"><div><p className="mb-4 text-xs font-black tracking-widest">UMA COMPETÊNCIA PARA O DIA A DIA</p><h2 className="text-3xl font-black leading-tight sm:text-4xl">Os Automóveis Precisam de Manutenção. Aprenda a Compreender Como Funcionam.</h2><p className="mt-5 leading-relaxed">Desde pequenas verificações até ao diagnóstico de sistemas automóveis, desenvolva conhecimentos úteis para cuidar melhor do seu veículo e explorar o universo da mecânica.</p><div className="mt-7"><Cta dark>QUERO APRENDER MECÂNICA AUTOMÓVEL</Cta></div></div><div className="rounded-3xl bg-slate-950 p-10 text-white"><div className="grid grid-cols-2 gap-4">{[[CarFront,"Automóveis"],[Wrench,"Ferramentas"],[Cog,"Motores"],[ScanLine,"Diagnóstico"]].map(([Icon,title])=>{const I=Icon as typeof CarFront;return <div key={title as string} className="flex min-h-32 flex-col items-center justify-center gap-3 rounded-2xl border border-white/20 bg-white/5"><I size={40} className="text-amber-400"/><span className="text-sm font-bold">{title as string}</span></div>})}</div></div></div></section>
 
