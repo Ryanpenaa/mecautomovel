@@ -196,7 +196,30 @@ function Home() {
 
     <section id="planos" className="bg-slate-950 px-5 py-20 text-white"><div className="mx-auto max-w-5xl"><div className="[&_h2]:text-white [&_p]:text-slate-300"><Heading title="Escolha Como Quer Começar" desc="Duas opções para iniciar a sua aprendizagem em mecânica automóvel."/></div><div className="grid gap-6 md:grid-cols-2">
       <div className="rounded-3xl border border-white/20 bg-white/5 p-7 sm:p-9"><h3 className="text-xl font-black">PLANO BÁSICO</h3><p className="mt-5 text-5xl font-black">{offer.basic.price.toLocaleString("pt-PT",{style:"currency",currency:"EUR"})}</p><ul className="my-8 space-y-4">{["Mais de 80 videoaulas","Formação 100% online","Acesso vitalício"].map(t=><li key={t} className="flex gap-3"><Check className="shrink-0 text-amber-400"/>{t}</li>)}</ul><button type="button" onClick={() => setShowUpgrade(true)} className="w-full min-h-12 rounded-xl border border-white/30 bg-white px-4 py-4 font-extrabold text-slate-950 transition hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400">COMEÇAR COM O BÁSICO</button></div>
-      <div className="relative rounded-3xl border-2 border-amber-400 bg-white p-7 text-slate-950 shadow-[0_0_55px_rgba(251,191,36,.17)] sm:p-9"><div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-5 py-2 text-xs font-black">MAIS COMPLETO</div><h3 className="text-xl font-black">PLANO PROFISSIONAL</h3><p className="mt-5 text-5xl font-black">{offer.professional.price.toLocaleString("pt-PT",{style:"currency",currency:"EUR"})}</p><ul className="my-8 space-y-4">{["Mais de 80 videoaulas","Certificado digital de conclusão*","Acesso vitalício","Materiais de apoio","10 bónus exclusivos"].map(t=><li key={t} className="flex gap-3"><CircleCheck className="shrink-0 text-amber-600"/>{t}</li>)}</ul><a href={offer.professional.checkoutUrl} className="flex min-h-12 w-full items-center justify-center rounded-xl bg-slate-900 px-4 py-4 text-center font-extrabold text-white transition hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500">QUERO O PLANO PROFISSIONAL</a></div>
+      <div className="relative overflow-visible rounded-3xl border-[3px] border-amber-400 bg-white p-5 text-slate-950 shadow-[0_0_55px_rgba(251,191,36,.20)] sm:p-9">
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-amber-400 px-5 py-2 text-xs font-black tracking-wide text-slate-950 shadow-sm">⭐ MAIS COMPLETO</div>
+        <p className="mt-2 text-xs font-extrabold uppercase tracking-[0.15em] text-amber-700">Formação + Materiais + 10 Bónus</p>
+        <h3 className="mt-2 text-2xl font-black">PLANO PROFISSIONAL</h3>
+        <p className="mt-2 text-sm text-slate-600">A formação completa para aprender, praticar e consultar sempre que precisar.</p>
+        <div className="mt-5 rounded-2xl bg-amber-50 px-4 py-4 text-center ring-1 ring-amber-200">
+          <p className="text-xs font-bold uppercase tracking-wide text-amber-800">Tudo incluído por</p>
+          <p className="mt-1 text-5xl font-black tracking-tight text-slate-950">{offer.professional.price.toLocaleString("pt-PT",{style:"currency",currency:"EUR"})}</p>
+          <p className="mt-1 text-xs font-semibold text-slate-600">Pagamento único · Acesso vitalício</p>
+        </div>
+        <ul className="mt-6 space-y-3 text-sm font-semibold sm:text-base">
+          {["Mais de 80 videoaulas práticas","Certificado digital de conclusão","Acesso vitalício à formação","Materiais de apoio em PDF"].map(t=><li key={t} className="flex items-start gap-2.5"><CircleCheck className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600"/><span>{t}</span></li>)}
+        </ul>
+        <div className="mt-6 rounded-2xl border border-amber-300 bg-gradient-to-b from-amber-50 to-white p-4 sm:p-5">
+          <p className="flex items-center gap-2 text-base font-black text-slate-950"><span aria-hidden="true">🎁</span> + 10 BÓNUS EXCLUSIVOS</p>
+          <p className="mt-2 text-sm leading-relaxed text-slate-700">Uma coleção extra de materiais para complementar as aulas e ajudar na consulta dos conteúdos de mecânica automóvel.</p>
+          <div className="mt-3 grid grid-cols-2 gap-2 text-xs font-bold text-slate-800">
+            {["Guias práticos","Materiais de consulta","Apoio ao estudo","Conteúdos complementares"].map(t=><span key={t} className="flex items-center gap-1.5 rounded-lg bg-white px-2.5 py-2 ring-1 ring-amber-100"><Check size={14} className="shrink-0 text-amber-700"/>{t}</span>)}
+          </div>
+          <a href="#conteudo" className="mt-3 inline-flex text-xs font-bold text-amber-800 underline underline-offset-2">Ver os conteúdos da formação</a>
+        </div>
+        <a href={offer.professional.checkoutUrl} className="mt-6 flex min-h-14 w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-4 text-center text-sm font-black text-white shadow-lg shadow-emerald-700/15 transition hover:bg-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 sm:text-base">QUERO O PLANO PROFISSIONAL <ArrowRight size={19}/></a>
+        <p className="mt-3 text-center text-xs font-medium text-slate-500">Compra segura através da Hotmart · Garantia de 15 dias</p>
+      </div>
     </div></div></section>
 
     {showUpgrade && (
