@@ -150,7 +150,7 @@ function Home() {
           <div className="mt-7 inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-100 px-4 py-3 text-xs font-black tracking-wider"><Play size={18} className="text-amber-600"/> CURSO 100% ONLINE EM VIDEOAULAS</div>
           <div className="mt-8"><Cta>QUERO COMEÇAR AGORA</Cta></div>
           <p className="mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs text-slate-600"><span>Acesso imediato</span><span>•</span><span>Pagamento seguro</span><span>•</span><span>Garantia de 7 dias</span></p>
-          <p className="mt-2 text-xs text-slate-500">Pré-visualização: inscrições e pagamentos ainda indisponíveis.</p>
+
         </div>
       </div>
     </header>
