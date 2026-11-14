@@ -35,8 +35,8 @@ const faq = [
   ["Durante quanto tempo tenho acesso?","Acesso vitalício."],
   ["Recebo um certificado?","Emissão de um certificado digital de conclusão."],
   ["Os materiais extra estão incluídos?","Sim. Além das videoaulas, os nossos alunos recebem materiais de apoio em PDF para consultar sempre que precisarem."],
-  ["Como funciona a garantia de 7 dias?","A oferta prevê uma garantia comercial de 7 dias, conforme as condições apresentadas na compra. Esta garantia não limita os direitos legais dos consumidores."],
-  ["Como faço a inscrição?","Esta versão está em pré-visualização. A inscrição será disponibilizada quando os meios de pagamento forem confirmados."],
+  ["Como funciona a garantia de 7 dias?","A sua compra tem uma garantia de 7 dias através da plataforma Hotmart. Durante esse período, pode solicitar o reembolso pela plataforma. Esta garantia não limita os seus direitos legais enquanto consumidor."],
+  ["Como faço a inscrição?","A inscrição é realizada através da plataforma Hotmart. Após a confirmação da compra, recebe as instruções para aceder à formação."],
 ];
 function todayPT() {
   return new Intl.DateTimeFormat("pt-PT", { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Lisbon" }).format(new Date());
