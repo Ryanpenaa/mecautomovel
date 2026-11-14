@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ArrowRight, Check, ChevronDown, CircleCheck, Cog, Gauge, GraduationCap, Laptop, Monitor, Play, Settings, ShieldCheck, Smartphone, Tablet, Wrench, Zap, CarFront, Disc3, Fuel, ScanLine, ClipboardCheck } from "lucide-react";
+import { ArrowRight, Check, ChevronDown, CircleCheck, Cog, Gauge, GraduationCap, Laptop, Monitor, Play, Settings, ShieldCheck, Smartphone, Tablet, Wrench, Zap, CarFront, Disc3, Fuel, ScanLine, ClipboardCheck, CircuitBoard, BatteryCharging, CircleGauge, Workflow, Waypoints } from "lucide-react";
 import { offer } from "../lib/offer-pt";
 
 export const Route = createFileRoute("/")({
@@ -16,17 +16,29 @@ export const Route = createFileRoute("/")({
 });
 
 const modules = [
-  { title: "Motores a gasolina e diesel", icon: Cog, detail: "Conheça os principais componentes e o funcionamento do motor." },
-  { title: "Sistema de alimentação", icon: Fuel, detail: "Compreenda o circuito de alimentação de combustível." },
-  { title: "Injeção eletrónica", icon: Gauge, detail: "Explore sensores, atuadores e gestão eletrónica." },
-  { title: "Sistema elétrico automóvel", icon: Zap, detail: "Aprenda os fundamentos dos circuitos elétricos do carro." },
-  { title: "Sistema de travagem", icon: Disc3, detail: "Conheça os componentes dos travões e a sua manutenção." },
-  { title: "Suspensão e direção", icon: Settings, detail: "Identifique os principais componentes destes sistemas." },
-  { title: "Embraiagem e caixa de velocidades", icon: Wrench, detail: "Descubra como funciona a ligação entre motor e caixa." },
-  { title: "Transmissão automóvel", icon: CarFront, detail: "Entenda como a força chega às rodas." },
-  { title: "Manutenção preventiva", icon: ClipboardCheck, detail: "Saiba quais as verificações e revisões habituais." },
-  { title: "Diagnóstico de avarias", icon: ScanLine, detail: "Conheça procedimentos básicos de identificação de falhas." },
+  { title: "Motores a gasolina e diesel", icon: Cog, detail: "Conheça os principais componentes e o funcionamento do motor.", tone: "amber" },
+  { title: "Sistema de alimentação", icon: Fuel, detail: "Compreenda o circuito de alimentação de combustível.", tone: "sky" },
+  { title: "Injeção eletrónica", icon: CircuitBoard, detail: "Explore sensores, atuadores e gestão eletrónica.", tone: "emerald" },
+  { title: "Sistema elétrico automóvel", icon: BatteryCharging, detail: "Aprenda os fundamentos dos circuitos elétricos do carro.", tone: "yellow" },
+  { title: "Sistema de travagem", icon: Disc3, detail: "Conheça os componentes dos travões e a sua manutenção.", tone: "rose" },
+  { title: "Suspensão e direção", icon: CircleGauge, detail: "Identifique os principais componentes destes sistemas.", tone: "indigo" },
+  { title: "Embraiagem e caixa de velocidades", icon: Workflow, detail: "Descubra como funciona a ligação entre motor e caixa.", tone: "orange" },
+  { title: "Transmissão automóvel", icon: Waypoints, detail: "Entenda como a força chega às rodas.", tone: "teal" },
+  { title: "Manutenção preventiva", icon: ClipboardCheck, detail: "Saiba quais as verificações e revisões habituais.", tone: "lime" },
+  { title: "Diagnóstico de avarias", icon: ScanLine, detail: "Conheça procedimentos básicos de identificação de falhas.", tone: "violet" },
 ];
+const iconTones: Record<string, string> = {
+  amber: "bg-amber-50 text-amber-700 ring-amber-200",
+  sky: "bg-sky-50 text-sky-700 ring-sky-200",
+  emerald: "bg-emerald-50 text-emerald-700 ring-emerald-200",
+  yellow: "bg-yellow-50 text-yellow-700 ring-yellow-200",
+  rose: "bg-rose-50 text-rose-700 ring-rose-200",
+  indigo: "bg-indigo-50 text-indigo-700 ring-indigo-200",
+  orange: "bg-orange-50 text-orange-700 ring-orange-200",
+  teal: "bg-teal-50 text-teal-700 ring-teal-200",
+  lime: "bg-lime-50 text-lime-700 ring-lime-200",
+  violet: "bg-violet-50 text-violet-700 ring-violet-200",
+};
 const lessons = ["Fundamentos da mecânica automóvel","Funcionamento dos motores","Componentes internos do motor","Sistema elétrico automóvel","Injeção eletrónica","Travões e segurança","Suspensão e direção","Embraiagem e transmissão","Diagnóstico de avarias","Revisão e manutenção preventiva"];
 const faq = [
   ["Preciso de experiência para começar?","Não. A formação começa pelos fundamentos e foi pensada também para quem nunca estudou mecânica automóvel."],
@@ -100,11 +112,22 @@ function Home() {
 
     <section id="conteudo" className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
       <Heading eyebrow="CONTEÚDO DA FORMAÇÃO" title="O Que Vai Aprender" desc="Aprenda os fundamentos da mecânica automóvel e compreenda os principais sistemas de um veículo, desde a manutenção preventiva até à identificação de avarias."/>
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">{modules.map(({title,icon: Icon,detail},i)=><article key={title} className="group rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-amber-300 hover:shadow-lg sm:p-5"><div className="mb-4 flex h-20 items-center justify-center rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 text-slate-800 transition group-hover:from-amber-100 group-hover:to-orange-100"><Icon className="h-10 w-10" strokeWidth={1.5}/></div><p className="mb-1 text-xs font-bold text-amber-600">MÓDULO {String(i+1).padStart(2,"0")}</p><h3 className="text-sm font-extrabold leading-snug sm:text-base">{title}</h3><p className="mt-2 hidden text-xs leading-relaxed text-slate-500 sm:block">{detail}</p></article>)}</div>
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-5">
+        {modules.map(({ title, icon: Icon, detail, tone }, i) => (
+          <article key={title} className="group rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-amber-300 hover:shadow-lg sm:p-5">
+            <div className={`mb-4 flex h-16 w-16 items-center justify-center rounded-2xl ring-1 transition-transform group-hover:scale-105 sm:h-20 sm:w-20 ${iconTones[tone]}`}>
+              <Icon className="h-9 w-9 sm:h-11 sm:w-11" strokeWidth={1.7} aria-hidden="true" />
+            </div>
+            <p className="mb-1 text-xs font-bold text-amber-600">MÓDULO {String(i + 1).padStart(2, "0")}</p>
+            <h3 className="text-sm font-extrabold leading-snug sm:text-base">{title}</h3>
+            <p className="mt-2 text-xs leading-relaxed text-slate-500">{detail}</p>
+          </article>
+        ))}
+      </div>
     </section>
 
     <section className="bg-white px-5 py-20"><div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
-      <div><p className="mb-3 text-xs font-extrabold tracking-widest text-amber-600">A SUA PLATAFORMA DE APRENDIZAGEM</p><h2 className="text-3xl font-black leading-tight sm:text-4xl">Estude ao Seu Ritmo, Onde e Quando Quiser</h2><p className="mt-5 leading-relaxed text-slate-600">Aceda às videoaulas organizadas por módulos e consulte os materiais de apoio através do telemóvel, tablet ou computador.</p><div className="mt-6 flex flex-wrap gap-3 text-sm font-bold text-slate-700"><span className="flex gap-2"><Smartphone size={19}/> Telemóvel</span><span className="flex gap-2"><Tablet size={19}/> Tablet</span><span className="flex gap-2"><Laptop size={19}/> Computador</span></div><div className="mt-8"><Cta>CONHECER OS PLANOS</Cta></div></div>
+      <div><p className="mb-3 text-xs font-extrabold tracking-widest text-amber-600">A SUA PLATAFORMA DE APRENDIZAGEM</p><h2 className="text-3xl font-black leading-tight sm:text-4xl">Estude ao Seu Ritmo, Onde e Quando Quiser</h2><p className="mt-5 leading-relaxed text-slate-600">Aceda às videoaulas organizadas por módulos e consulte os materiais de apoio através do telemóvel, tablet ou computador.</p><div className="mt-6 flex flex-wrap gap-3 text-sm font-bold text-slate-700"><span className="flex gap-2"><Smartphone size={19}/> Telemóvel</span><span className="flex gap-2"><Tablet size={19}/> Tablet</span><span className="flex gap-2"><Laptop size={19}/> Computador</span></div></div>
       <div className="rounded-3xl bg-slate-950 p-5 text-white shadow-xl sm:p-8"><div className="mb-5 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/10 p-4"><div className="rounded-lg bg-amber-400 p-3 text-slate-950"><Monitor/></div><div><p className="font-bold">Aulas de Mecânica Automóvel</p><p className="text-xs text-slate-300">Exemplo ilustrativo da navegação</p></div></div><div className="grid grid-cols-2 gap-2">{lessons.slice(0,6).map((a,i)=><div key={a} className="flex items-center gap-2 rounded-lg bg-white/10 p-3 text-xs"><Play size={14} className="shrink-0 text-amber-400"/><span>{a}</span></div>)}</div><p className="mt-4 text-xs text-slate-400">Títulos ilustrativos, sujeitos a conferência com a biblioteca efetiva de aulas.</p></div>
     </div></section>
 
