@@ -28,3 +28,5 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Keep these generated commercial mockups as optimized public WebP assets with explicit image dimensions and lazy decoding/loading, so their requested stable URLs work without layout shifts.
