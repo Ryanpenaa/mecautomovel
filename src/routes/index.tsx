@@ -34,7 +34,7 @@ const faq = [
   ["Como posso assistir às aulas?","A formação é online e pode ser consultada no telemóvel, tablet ou computador, com ligação à Internet."],
   ["Durante quanto tempo tenho acesso?","Acesso vitalício."],
   ["Recebo um certificado?","Emissão de um certificado digital de conclusão."],
-  ["Os materiais extra estão incluídos?","A lista de materiais complementares está em validação. Só serão anunciados como incluídos depois de confirmada a sua disponibilidade."],
+  ["Os materiais extra estão incluídos?","Sim. Além das videoaulas, os nossos alunos recebem materiais de apoio em PDF para consultar sempre que precisarem."],
   ["Como funciona a garantia de 7 dias?","A oferta prevê uma garantia comercial de 7 dias, conforme as condições apresentadas na compra. Esta garantia não limita os direitos legais dos consumidores."],
   ["Como faço a inscrição?","Esta versão está em pré-visualização. A inscrição será disponibilizada quando os meios de pagamento forem confirmados."],
 ];
