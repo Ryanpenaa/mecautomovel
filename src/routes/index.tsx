@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Star, ArrowRight, Check, ChevronDown, CircleCheck, Cog, Gauge, GraduationCap, Laptop, Monitor, Play, Settings, ShieldCheck, Smartphone, Tablet, Wrench, Zap, CarFront, Disc3, Fuel, ScanLine, ClipboardCheck, CircuitBoard, BatteryCharging, CircleGauge, Workflow, Waypoints } from "lucide-react";
+import { Star, X, ArrowRight, Check, ChevronDown, CircleCheck, Cog, Gauge, GraduationCap, Laptop, Monitor, Play, Settings, ShieldCheck, Smartphone, Tablet, Wrench, Zap, CarFront, Disc3, Fuel, ScanLine, ClipboardCheck, CircuitBoard, BatteryCharging, CircleGauge, Workflow, Waypoints } from "lucide-react";
 import { offer } from "../lib/offer-pt";
 
 export const Route = createFileRoute("/")({
@@ -138,6 +138,20 @@ function StudentReviews() {
 }
 function Home() {
   const [opened, setOpened] = useState<number | null>(0);
+  const [showUpgrade, setShowUpgrade] = useState(false);
+  useEffect(() => {
+    if (!showUpgrade) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setShowUpgrade(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [showUpgrade]);
   return <main className="min-h-screen bg-[#f8fafc] text-slate-900">
     <div className="bg-amber-400 px-4 py-2.5 text-center text-xs font-black tracking-wider text-slate-950 sm:text-sm">🔥 Só HOJE <span className="ml-2 font-semibold normal-case tracking-normal">• {todayPT()} • </span><VisitTimer/></div>
     <header className="relative overflow-hidden bg-white pb-16 pt-12 text-slate-950 sm:pt-16">
@@ -181,9 +195,27 @@ function Home() {
     </section>
 
     <section id="planos" className="bg-slate-950 px-5 py-20 text-white"><div className="mx-auto max-w-5xl"><div className="[&_h2]:text-white [&_p]:text-slate-300"><Heading title="Escolha Como Quer Começar" desc="Duas opções para iniciar a sua aprendizagem em mecânica automóvel."/></div><div className="grid gap-6 md:grid-cols-2">
-      <div className="rounded-3xl border border-white/20 bg-white/5 p-7 sm:p-9"><h3 className="text-xl font-black">PLANO BÁSICO</h3><p className="mt-5 text-5xl font-black">{offer.basic.price.toLocaleString("pt-PT",{style:"currency",currency:"EUR"})}</p><ul className="my-8 space-y-4">{["Mais de 80 videoaulas","Formação 100% online","Acesso vitalício"].map(t=><li key={t} className="flex gap-3"><Check className="shrink-0 text-amber-400"/>{t}</li>)}</ul><button disabled className="w-full cursor-not-allowed rounded-xl border border-white/30 px-4 py-4 font-extrabold text-slate-200 opacity-70">COMEÇAR COM O BÁSICO</button></div>
-      <div className="relative rounded-3xl border-2 border-amber-400 bg-white p-7 text-slate-950 shadow-[0_0_55px_rgba(251,191,36,.17)] sm:p-9"><div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-5 py-2 text-xs font-black">MAIS COMPLETO</div><h3 className="text-xl font-black">PLANO PROFISSIONAL</h3><p className="mt-5 text-5xl font-black">{offer.professional.price.toLocaleString("pt-PT",{style:"currency",currency:"EUR"})}</p><ul className="my-8 space-y-4">{["Mais de 80 videoaulas","Certificado digital de conclusão*","Acesso vitalício","Materiais de apoio","10 bónus exclusivos"].map(t=><li key={t} className="flex gap-3"><CircleCheck className="shrink-0 text-amber-600"/>{t}</li>)}</ul><button disabled className="w-full cursor-not-allowed rounded-xl bg-slate-900 px-4 py-4 font-extrabold text-white opacity-70">QUERO O PLANO PROFISSIONAL</button></div>
+      <div className="rounded-3xl border border-white/20 bg-white/5 p-7 sm:p-9"><h3 className="text-xl font-black">PLANO BÁSICO</h3><p className="mt-5 text-5xl font-black">{offer.basic.price.toLocaleString("pt-PT",{style:"currency",currency:"EUR"})}</p><ul className="my-8 space-y-4">{["Mais de 80 videoaulas","Formação 100% online","Acesso vitalício"].map(t=><li key={t} className="flex gap-3"><Check className="shrink-0 text-amber-400"/>{t}</li>)}</ul><button type="button" onClick={() => setShowUpgrade(true)} className="w-full min-h-12 rounded-xl border border-white/30 bg-white px-4 py-4 font-extrabold text-slate-950 transition hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400">COMEÇAR COM O BÁSICO</button></div>
+      <div className="relative rounded-3xl border-2 border-amber-400 bg-white p-7 text-slate-950 shadow-[0_0_55px_rgba(251,191,36,.17)] sm:p-9"><div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-5 py-2 text-xs font-black">MAIS COMPLETO</div><h3 className="text-xl font-black">PLANO PROFISSIONAL</h3><p className="mt-5 text-5xl font-black">{offer.professional.price.toLocaleString("pt-PT",{style:"currency",currency:"EUR"})}</p><ul className="my-8 space-y-4">{["Mais de 80 videoaulas","Certificado digital de conclusão*","Acesso vitalício","Materiais de apoio","10 bónus exclusivos"].map(t=><li key={t} className="flex gap-3"><CircleCheck className="shrink-0 text-amber-600"/>{t}</li>)}</ul><a href={offer.professional.checkoutUrl} className="flex min-h-12 w-full items-center justify-center rounded-xl bg-slate-900 px-4 py-4 text-center font-extrabold text-white transition hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500">QUERO O PLANO PROFISSIONAL</a></div>
     </div></div></section>
+
+    {showUpgrade && (
+      <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-slate-950/75 p-4 sm:p-6" onMouseDown={(event) => { if (event.target === event.currentTarget) setShowUpgrade(false); }}>
+        <section role="dialog" aria-modal="true" aria-labelledby="upgrade-title" aria-describedby="upgrade-desc" className="relative my-auto w-full max-w-md rounded-3xl bg-white p-6 text-center text-slate-950 shadow-2xl sm:p-9">
+          <button type="button" onClick={() => setShowUpgrade(false)} aria-label="Fechar oferta" className="absolute right-4 top-4 rounded-full p-2 text-slate-500 transition hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"><X size={22}/></button>
+          <p className="mb-3 inline-flex rounded-full bg-amber-100 px-4 py-2 text-xs font-extrabold tracking-wide text-amber-800">UMA OFERTA PARA SI</p>
+          <h2 id="upgrade-title" className="text-2xl font-black leading-tight sm:text-3xl">Leve a Formação Profissional por apenas 12,95 €</h2>
+          <p id="upgrade-desc" className="mt-4 text-sm leading-relaxed text-slate-600">Por mais 3,05 € em relação ao Plano Básico, tenha acesso ao Plano Profissional, com certificado digital de conclusão, materiais de apoio e 10 bónus.</p>
+          <div className="mt-5 flex items-baseline justify-center gap-3">
+            <span className="text-lg text-slate-400 line-through">{offer.professional.price.toLocaleString("pt-PT", { style: "currency", currency: "EUR" })}</span>
+            <strong className="text-4xl font-black text-emerald-700">{offer.professionalUpgrade.price.toLocaleString("pt-PT", { style: "currency", currency: "EUR" })}</strong>
+          </div>
+          <p className="mt-2 text-sm font-bold text-emerald-700">Poupe 6,95 € no Plano Profissional</p>
+          <a href={offer.professionalUpgrade.checkoutUrl} className="mt-7 flex min-h-12 w-full items-center justify-center rounded-xl bg-amber-400 px-4 py-4 text-center font-black text-slate-950 transition hover:bg-amber-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600">SIM, QUERO O PROFISSIONAL POR 12,95 €</a>
+          <a href={offer.basic.checkoutUrl} className="mt-3 flex min-h-12 w-full items-center justify-center rounded-xl border border-slate-200 px-4 py-3 text-center text-sm font-bold text-slate-600 transition hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Não, continuar com o Básico por 9,90 €</a>
+        </section>
+      </div>
+    )}
 
     <StudentReviews/>
 
