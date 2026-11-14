@@ -32,7 +32,7 @@ const faq = [
   ["Preciso de experiência para começar?","Não. A formação começa pelos fundamentos e foi pensada também para quem nunca estudou mecânica automóvel."],
   ["O curso é adequado para principiantes?","Sim. As videoaulas apresentam os conceitos de forma progressiva, facilitando a aprendizagem desde o início."],
   ["Como posso assistir às aulas?","A formação é online e pode ser consultada no telemóvel, tablet ou computador, com ligação à Internet."],
-  ["Durante quanto tempo tenho acesso?","Os planos indicados preveem acesso vitalício, sujeito às condições da oferta confirmadas na compra."],
+  ["Durante quanto tempo tenho acesso?","Acesso vitalício."],
   ["Recebo um certificado?","Está prevista a emissão de um certificado digital de conclusão no Plano Profissional, segundo as condições do curso. Não equivale automaticamente a uma certificação profissional oficialmente reconhecida em Portugal."],
   ["Os materiais extra estão incluídos?","A lista de materiais complementares está em validação. Só serão anunciados como incluídos depois de confirmada a sua disponibilidade."],
   ["Como funciona a garantia de 7 dias?","A oferta prevê uma garantia comercial de 7 dias, conforme as condições apresentadas na compra. Esta garantia não limita os direitos legais dos consumidores."],
