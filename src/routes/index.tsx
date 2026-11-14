@@ -176,7 +176,7 @@ function Home() {
       <div className="rounded-3xl bg-slate-950 p-5 text-white shadow-xl sm:p-8"><div className="mb-5 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/10 p-4"><div className="rounded-lg bg-amber-400 p-3 text-slate-950"><Monitor/></div><div><p className="font-bold">Aulas de Mecânica Automóvel</p></div></div><div className="grid grid-cols-2 gap-2">{lessons.slice(0,6).map((a,i)=><div key={a} className="flex items-center gap-2 rounded-lg bg-white/10 p-3 text-xs"><Play size={14} className="shrink-0 text-amber-400"/><span>{a}</span></div>)}</div></div>
     </div></section>
 
-    <section className="mx-auto max-w-7xl px-5 py-20"><Heading eyebrow="EXCLUSIVO DO PLANO PROFISSIONAL" title="10 Bónus Para Complementar a Sua Formação" desc="Guias práticos e materiais de consulta propostos para aprofundar conhecimentos e acompanhar a sua aprendizagem."/>
+    <section className="mx-auto max-w-7xl px-5 py-20"><Heading title="10 Bónus Para Complementar a Sua Formação" desc="Guias práticos e materiais de consulta propostos para aprofundar conhecimentos e acompanhar a sua aprendizagem."/>
       <div className="mx-auto w-full max-w-6xl overflow-hidden rounded-2xl"><img src="/bonus-mecanica-automovel.webp" width={1920} height={1080} loading="lazy" decoding="async" className="block h-auto w-full" alt="Mockup ilustrativo dos 10 bónus propostos do Plano Profissional: dez manuais de mecânica automóvel em duas filas, numa oficina, com uma representação gerada do formador à esquerda; materiais por validar."/></div>
     </section>
 
