@@ -1,6 +1,15 @@
-// Preços de teste. Alterar apenas após validação da oferta.
-// Checkouts intencionalmente desativados: não adicionar URLs sem autorização.
+// Ofertas e ligações de pagamento fornecidas pelo vendedor (Hotmart).
 export const offer = {
-  basic: { price: 9.9, checkoutUrl: null as string | null },
-  professional: { price: 19.9, checkoutUrl: null as string | null },
+  basic: {
+    price: 9.9,
+    checkoutUrl: "https://pay.hotmart.com/E108495906D?off=k7u0ufz6",
+  },
+  professional: {
+    price: 19.9,
+    checkoutUrl: "https://pay.hotmart.com/E108495906D?off=yrmzir5m",
+  },
+  professionalUpgrade: {
+    price: 12.95,
+    checkoutUrl: "https://pay.hotmart.com/E108495906D?off=2jkhosui",
+  },
 } as const;
