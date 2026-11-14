@@ -47,23 +47,17 @@ function Heading({ eyebrow, title, desc }: { eyebrow?: string; title: string; de
   return <div className="mx-auto mb-10 max-w-3xl text-center">{eyebrow && <p className="mb-3 text-xs font-extrabold tracking-[0.22em] text-amber-600">{eyebrow}</p>}<h2 className="text-3xl font-black leading-tight tracking-tight text-slate-950 sm:text-4xl">{title}</h2>{desc && <p className="mt-4 text-base leading-relaxed text-slate-600">{desc}</p>}</div>;
 }
 function VehicleArt() {
-  return <div className="relative mx-auto w-full max-w-xl overflow-hidden rounded-[2rem] border border-slate-700 bg-gradient-to-br from-slate-700 via-slate-900 to-slate-950 p-6 shadow-2xl sm:p-10" role="img" aria-label="Ilustração de um automóvel em oficina, equipamento de diagnóstico e ferramentas">
-    <div className="absolute right-5 top-5 flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-xs text-white"><Wrench size={14}/> Oficina automóvel</div>
-    <div className="absolute -left-12 top-1/3 h-40 w-40 rounded-full bg-amber-400/20 blur-3xl"/>
-    <div className="relative mt-14 flex min-h-64 flex-col justify-end rounded-2xl border border-white/10 bg-gradient-to-b from-slate-700/80 to-slate-950 p-5">
-      <div className="absolute left-5 top-5 flex flex-col gap-2"><div className="h-1 w-24 rounded bg-amber-400"/><div className="h-1 w-16 rounded bg-white/30"/></div>
-      <svg viewBox="0 0 440 190" className="relative w-full drop-shadow-2xl" aria-hidden="true">
-        <defs><linearGradient id="paint" x1="0" x2="1"><stop stopColor="#e2e8f0"/><stop offset="0.5" stopColor="#9ca3af"/><stop offset="1" stopColor="#f8fafc"/></linearGradient></defs>
-        <path d="M45 115 L75 98 L115 49 Q123 39 150 37 L284 37 Q304 38 320 55 L363 100 L398 111 Q409 117 409 133 L409 152 L31 152 L31 133 Q31 120 45 115Z" fill="url(#paint)"/>
-        <path d="M130 52 L279 52 Q292 52 301 65 L332 101 L94 101Z" fill="#172438"/>
-        <path d="M210 52 L210 101" stroke="#64748b" strokeWidth="5"/>
-        <path d="M45 116 L83 111 M352 113 L395 121" stroke="#fbbf24" strokeWidth="8" strokeLinecap="round"/>
-        <circle cx="114" cy="151" r="30" fill="#0f172a"/><circle cx="114" cy="151" r="15" fill="#94a3b8"/>
-        <circle cx="330" cy="151" r="30" fill="#0f172a"/><circle cx="330" cy="151" r="15" fill="#94a3b8"/>
-      </svg>
-      <div className="relative mt-4 flex items-center justify-between gap-3"><div><p className="text-xs font-bold tracking-widest text-amber-400">FORMAÇÃO ONLINE</p><p className="mt-1 text-xl font-black text-white sm:text-2xl">Mecânica Automóvel</p></div><div className="rounded-xl bg-amber-400 p-3 text-slate-950"><Cog size={28}/></div></div>
-    </div>
-    <div className="relative mt-4 grid grid-cols-3 gap-2 text-center text-[11px] font-bold text-slate-200"><span className="rounded-xl bg-white/10 p-3">MOTORES</span><span className="rounded-xl bg-white/10 p-3">TRAVÕES</span><span className="rounded-xl bg-white/10 p-3">DIAGNÓSTICO</span></div>
+  return <div className="relative mx-auto w-full max-w-xl">
+    <img
+      src="/mecanica-automovel-hero.webp"
+      width={1920}
+      height={1088}
+      alt="Formação em Mecânica Automóvel: caixa do curso, livros de mecânica, computador com videoaulas, tablet com sistema de travagem e smartphone com aulas, numa bancada de oficina com um automóvel de capô aberto ao fundo"
+      loading="eager"
+      fetchPriority="high"
+      decoding="async"
+      className="w-full rounded-[2rem] border border-slate-700 shadow-2xl"
+    />
   </div>;
 }
 function Home() {
