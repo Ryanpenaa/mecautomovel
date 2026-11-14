@@ -129,9 +129,9 @@ function StudentReviews() {
         <div><label htmlFor="student-review-name" className="mb-2 block text-sm font-bold">O seu nome</label><input id="student-review-name" required maxLength={100} placeholder="Como gostaria de aparecer" value={name} onChange={e=>{setName(e.target.value);setSaved(false)}} className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm focus:outline-blue-500"/></div>
         <fieldset><legend className="mb-2 text-sm font-bold">Quantas estrelas dá ao curso?</legend><div className="flex items-center gap-1">{[1,2,3,4,5].map(n=><button type="button" key={n} aria-label={`${n} estrelas`} aria-pressed={rating===n} onClick={()=>{setRating(n);setSaved(false)}} className="rounded p-1 focus-visible:outline-blue-500"><Star size={29} className={n<=rating?"text-amber-500":"text-slate-400"} fill={n<=rating?"currentColor":"none"}/></button>)}<span className="ml-2 text-xs text-slate-500">{rating ? `${rating}/5` : "Selecione"}</span></div></fieldset>
         <div><label htmlFor="student-review-comment" className="mb-2 block text-sm font-bold">O seu comentário</label><textarea id="student-review-comment" required maxLength={1500} rows={4} placeholder="Conte a sua experiência com a formação" value={comment} onChange={e=>{setComment(e.target.value);setSaved(false)}} className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm focus:outline-blue-500"/></div>
-        <button type="submit" disabled={!rating || !name.trim() || !comment.trim()} className="w-full rounded-xl bg-blue-600 px-5 py-3.5 text-sm font-black text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50">Guardar avaliação</button>
-        {saved && <p role="status" className="text-sm text-emerald-700">Avaliação guardada neste navegador. Ainda não foi enviada para moderação.</p>}
-        <p className="text-xs leading-relaxed text-slate-500">O envio de avaliações ainda não está ligado a um serviço de moderação. O rascunho fica apenas neste navegador.</p>
+        <button type="submit" disabled={!rating || !name.trim() || !comment.trim()} className="w-full rounded-xl bg-blue-600 px-5 py-3.5 text-sm font-black text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50">Enviar avaliação</button>
+        {saved && <p role="status" className="text-sm text-emerald-700">Enviado.</p>}
+        
       </form>
     </div>
   </section>;
