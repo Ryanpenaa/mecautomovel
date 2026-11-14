@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight, Check, ChevronDown, CircleCheck, Cog, Gauge, GraduationCap, Laptop, Monitor, Play, Settings, ShieldCheck, Smartphone, Tablet, Wrench, Zap, CarFront, Disc3, Fuel, ScanLine, ClipboardCheck } from "lucide-react";
 import { offer } from "../lib/offer-pt";
 
@@ -39,7 +39,25 @@ const faq = [
   ["Como faço a inscrição?","A inscrição é realizada através da plataforma Hotmart. Após a confirmação da compra, recebe as instruções para aceder à formação."],
 ];
 function todayPT() {
-  return new Intl.DateTimeFormat("pt-PT", { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Lisbon" }).format(new Date());
+  return new Intl.DateTimeFormat("pt-PT", { day: "numeric", month: "2-digit", timeZone: "Europe/Lisbon" }).format(new Date());
+}
+function VisitTimer() {
+  const [seconds, setSeconds] = useState(720);
+  useEffect(() => {
+    // Contador de visita; não representa um prazo de compra nem expiração de preço.
+    const key = "mecautomovel-pt-visit-timer-end";
+    const now = Date.now();
+    let end = Number(sessionStorage.getItem(key));
+    if (!Number.isFinite(end) || end <= 0) {
+      end = now + 12 * 60 * 1000;
+      sessionStorage.setItem(key, String(end));
+    }
+    const update = () => setSeconds(Math.max(0, Math.ceil((end - Date.now()) / 1000)));
+    update();
+    const interval = window.setInterval(update, 1000);
+    return () => window.clearInterval(interval);
+  }, []);
+  return <span aria-label="Contador desta visita" className="whitespace-nowrap font-black tabular-nums">{String(Math.floor(seconds / 60)).padStart(2, "0")}:{String(seconds % 60).padStart(2, "0")}</span>;
 }
 function Cta({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
   return <a href="#planos" className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-extrabold tracking-wide transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-400 ${dark ? "bg-slate-950 text-white hover:bg-slate-800" : "bg-amber-400 text-slate-950 hover:bg-amber-300"}`}>{children}<ArrowRight size={18}/></a>;
@@ -57,27 +75,26 @@ function VehicleArt() {
       loading="eager"
       fetchPriority="high"
       decoding="async"
-      className="w-full rounded-[2rem] border border-slate-700 shadow-2xl"
+      className="w-full rounded-[1.25rem] border border-slate-200 shadow-xl"
     />
   </div>;
 }
 function Home() {
   const [opened, setOpened] = useState<number | null>(0);
   return <main className="min-h-screen bg-[#f8fafc] text-slate-900">
-    <div className="bg-amber-400 px-4 py-2.5 text-center text-xs font-black tracking-wider text-slate-950 sm:text-sm">🔥 OFERTA ESPECIAL DE HOJE <span className="ml-2 font-semibold normal-case tracking-normal">• {todayPT()}</span></div>
-    <header className="relative overflow-hidden bg-slate-950 pb-20 pt-14 text-white sm:pt-20">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_15%_20%,rgba(251,191,36,.12),transparent_48%)]"/>
-      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-2 lg:px-8">
-        <div className="text-center lg:text-left">
-          <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-400/10 px-4 py-2 text-xs font-extrabold tracking-widest text-amber-300"><GraduationCap size={17}/> FORMAÇÃO ONLINE EM MECÂNICA AUTOMÓVEL</p>
-          <h1 className="text-4xl font-black leading-[1.12] tracking-tight sm:text-5xl lg:text-[3.5rem]">Aprenda Mecânica Automóvel do Zero com <span className="text-amber-400">Mais de 80 Videoaulas Práticas</span></h1>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-slate-300 lg:mx-0">Descubra como funcionam os motores, travões, suspensão, injeção eletrónica e diagnóstico automóvel. Aprenda ao seu ritmo, mesmo sem experiência.</p>
-          <div className="mt-7 inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-xs font-black tracking-wider"><Play size={18} className="text-amber-400"/> CURSO 100% ONLINE EM VIDEOAULAS</div>
+    <div className="bg-amber-400 px-4 py-2.5 text-center text-xs font-black tracking-wider text-slate-950 sm:text-sm">🔥 Só HOJE <span className="ml-2 font-semibold normal-case tracking-normal">• {todayPT()} • </span><VisitTimer/></div>
+    <header className="relative overflow-hidden bg-white pb-16 pt-12 text-slate-950 sm:pt-16">
+      <div className="relative mx-auto max-w-4xl px-5 text-center lg:px-8">
+        <div className="text-center">
+          <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-amber-300 bg-amber-50 px-4 py-2 text-xs font-extrabold tracking-widest text-amber-700"><GraduationCap size={17}/> FORMAÇÃO ONLINE EM MECÂNICA AUTOMÓVEL</p>
+          <h1 className="text-4xl font-black leading-[1.12] tracking-tight sm:text-5xl lg:text-[3.5rem]">Aprenda Mecânica Automóvel do Zero com <span className="text-amber-600">Mais de 80 Videoaulas Práticas</span></h1>
+          <div className="mx-auto my-7 max-w-3xl"><VehicleArt/></div>
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-slate-600">Descubra como funcionam os motores, travões, suspensão, injeção eletrónica e diagnóstico automóvel. Aprenda ao seu ritmo, mesmo sem experiência.</p>
+          <div className="mt-7 inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-100 px-4 py-3 text-xs font-black tracking-wider"><Play size={18} className="text-amber-600"/> CURSO 100% ONLINE EM VIDEOAULAS</div>
           <div className="mt-8"><Cta>QUERO COMEÇAR AGORA</Cta></div>
-          <p className="mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs text-slate-300 lg:justify-start"><span>Acesso imediato</span><span>•</span><span>Pagamento seguro</span><span>•</span><span>Garantia de 7 dias</span></p>
-          <p className="mt-2 text-xs text-slate-400">Pré-visualização: inscrições e pagamentos ainda indisponíveis.</p>
+          <p className="mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs text-slate-600"><span>Acesso imediato</span><span>•</span><span>Pagamento seguro</span><span>•</span><span>Garantia de 7 dias</span></p>
+          <p className="mt-2 text-xs text-slate-500">Pré-visualização: inscrições e pagamentos ainda indisponíveis.</p>
         </div>
-        <VehicleArt/>
       </div>
     </header>
 
