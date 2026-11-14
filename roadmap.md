@@ -1,0 +1,3 @@
+- [ ] Recreate and optimize the bonus and certificate mockups in public.
+- [ ] Replace only the two requested illustrations, preserving adjacent disclaimers.
+- [ ] Verify image HTTP responses, rendering, compilation signals and screenshots without publishing.
